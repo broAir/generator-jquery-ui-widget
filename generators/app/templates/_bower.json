@@ -1,9 +1,9 @@
 {
-  "name": "<%= appParamCaseName %>",
-  "version": "0.0.0",
-  "dependencies": {
-    "jquery": "~2.1.0",
-    "jquery.ui": "latest"
-  },
-  "devDependencies": { }
+    "name": "<%= appCamelCaseName %>",
+    "version": "0.0.0",
+    "dependencies": {
+        "jquery": "~2.1.0",
+        "jquery-ui": "latest"
+    },
+    "devDependencies": {}
 }

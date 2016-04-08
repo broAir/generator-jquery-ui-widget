@@ -1,0 +1,22 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= appName %>
+    </title>
+    <link rel="stylesheet" href="../src/<%= appName %>.css">
+</head>
+
+<body>
+    <div id="test-el">
+    </div>
+
+</body>
+<script>
+    $(document).ready(function(){
+        $("#test-el").<%= appName %>();
+      });
+</script>
+</html>
