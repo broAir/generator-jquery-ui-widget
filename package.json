@@ -1,0 +1,29 @@
+{
+  "name": "generator-jqueryui-widget",
+  "version": "1.0.0",
+  "description": "Simple jquery-ui widget generator",
+  "keywords": [
+    "jquery-ui",
+    "jquery.ui",
+    "widget",
+    "jqueryui",
+    "jquery-widget",
+    "jquery"
+  ],
+  "author": "Andrey Bobrov",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/broAir/generator-jquery-ui-widget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/broAir/generator-jquery-ui-widget/issues"
+  },
+  "homepage": "https://github.com/broAir/generator-jquery-ui-widget#readme",
+  "dependencies": {
+    "yeoman-generator": "^0.22.5"
+  },
+   "files": [
+    "generators/app"
+  ]
+}
