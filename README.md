@@ -7,9 +7,9 @@ Same as every yo generator:
 
 ## Usage
 Navigate to desired parent directory and type
-`$ yo jqueryui-widget`
+`$ yo jqueryui-widget [name]`
 
 ## Issues
-Please feel free to register an issue/contribute a fix if you see that this is failing to run or you have a feature proposal..
+Please feel free to register an issue/contribute a fix if you see that this is failing to run or you have a feature proposal.
 
 Good luck and happy coding
