@@ -7,80 +7,65 @@ var camelCase = require('camel-case');
 var yeoman = require('yeoman-generator');
 
 var jqueryWidgetGenerator = yeoman.Base.extend({
-    constructor: function() {
+
+    constructor: function () {
         yeoman.Base.apply(this, arguments);
 
-        this.argument('appname', { type: String, required: false });
+        this.argument('appname', {type: String, required: false});
         var appName = this.appname || "myWidget";
-        
+
         this.appName = camelCase(appName);
 
         this.env.options.appPath = this.appName || this.options.appPath;
 
         this.indexFile = htmlWiring.readFileAsString(this.templatePath('demo/index.html'));
 
-        this.resolvePath = function(str) { return path.join(this.env.options.appPath || "", str) };
+        this.resolvePath = function (str) {
+            return path.join(this.env.options.appPath || "", str)
+        };
     },
 
-    writing: {
-        git: function() {
-            this.fs.copyTpl(
-                this.templatePath('gitignore'),
-                this.destinationPath(this.resolvePath('.gitignore')),
-                {
-                    appPath: this.env.options.appPath
-                }
-            );
-        },
-
-        bower: function() {
-            this.fs.copyTpl(
-                this.templatePath('_bower.json'),
-                this.destinationPath(this.resolvePath('bower.json')),
-                {
-                    appCamelCaseName: camelCase(this.appName)
-                }
-            );
-        },
-
-        writeIndex: function() {
-            this.indexFile = htmlWiring.readFileAsString(this.templatePath('demo/index.html'));
-
-            this.indexFile = ejs.render(
-                this.indexFile,
-                {
-                    appName: camelCase(this.appName)
-                }
-            );
-
-            var vendorJS = [
-                '../bower_components/jquery/dist/jquery.js',
-                '../bower_components/jquery-ui/jquery-ui.js',
-            ];
-
-            this.indexFile = htmlWiring.appendScripts(this.indexFile, 'scripts/vendor.js', vendorJS);
-
-            this.indexFile = htmlWiring.appendScripts(this.indexFile, 'scripts/widget', ["../src/" + this.appName + ".js"]);
-        },
-
-
-        setupEnv: function() {
-            mkdirp.sync(
-                this.templatePath()
-            );
-
-            mkdirp.sync(
-                this.destinationPath('/src')
-            );
-
-            this.fs.write(
-                this.destinationPath(path.join(this.env.options.appPath, '/demo/index.html')),
-                this.indexFile
-            );
-        }
+    git: function () {
+        console.log(this.destinationPath(this.resolvePath('.gitignore')));
+        this.fs.copyTpl(
+            this.templatePath('gitignore'),
+            this.destinationPath(this.resolvePath('.gitignore')),
+            {
+                appPath: this.env.options.appPath
+            }
+        );
     },
 
-    createJsFile: function() {
+    bower: function () {
+        this.fs.copyTpl(
+            this.templatePath('_bower.json'),
+            this.destinationPath(this.resolvePath('bower.json')),
+            {
+                appCamelCaseName: camelCase(this.appName)
+            }
+        );
+    },
+
+    writeIndex: function () {
+        this.indexFile = htmlWiring.readFileAsString(this.templatePath('demo/index.html'));
+
+        this.indexFile = ejs.render(
+            this.indexFile,
+            {
+                appName: camelCase(this.appName)
+            }
+        );
+
+        var vendorJS = [
+            '../bower_components/jquery/dist/jquery.js',
+            '../bower_components/jquery-ui/jquery-ui.js'
+        ];
+
+        this.indexFile = htmlWiring.appendScripts(this.indexFile, 'scripts/vendor.js', vendorJS);
+
+        this.indexFile = htmlWiring.appendScripts(this.indexFile, 'scripts/widget', ["../src/" + this.appName + ".js"]);
+    },
+    createJsFile: function () {
         this._writeTemplate(
             ".js",
             'src/js',
@@ -91,7 +76,7 @@ var jqueryWidgetGenerator = yeoman.Base.extend({
         );
     },
 
-    createCssFile: function() {
+    createCssFile: function () {
         this._writeTemplate(
             ".css",
             'src/style',
@@ -102,7 +87,18 @@ var jqueryWidgetGenerator = yeoman.Base.extend({
         );
     },
 
-    _writeTemplate: function(ext, source, destination, data) {
+    setupEnv: function () {
+        mkdirp.sync(
+            this.destinationPath()
+        );
+
+        this.fs.write(
+            this.destinationPath(path.join(this.env.options.appPath, '/demo/index.html')),
+            this.indexFile
+        );
+    },
+
+    _writeTemplate: function (ext, source, destination, data) {
         if (typeof source === 'undefined' || typeof destination === 'undefined') {
             return;
         }
@@ -114,7 +110,7 @@ var jqueryWidgetGenerator = yeoman.Base.extend({
         );
     },
 
-    install: function() {
+    install: function () {
         this.bowerInstall('', {
             'config.cwd': this.destinationPath(this.resolvePath(".")),
             'config.directory': "bower_components"

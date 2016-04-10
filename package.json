@@ -1,6 +1,6 @@
 {
     "name": "generator-jqueryui-widget",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "Simple jquery-ui widget generator",
     "keywords": [
         "jquery-ui",
@@ -26,8 +26,7 @@
         "html-wiring": "^1.0.0",
         "mkdirp": "^0.5.1",
         "camel-case": "latest",
-        "yeoman-generator": "^0.22.5",
-        "ejs":"latest"
+        "yeoman-generator": "^0.22.5"
     },
     "files": [
         "generators/app"
