@@ -22,9 +22,12 @@
     },
     "homepage": "https://github.com/broAir/generator-jquery-ui-widget#readme",
     "dependencies": {
+        "ejs": "^2.3.0",
+        "html-wiring": "^1.0.0",
         "mkdirp": "^0.5.1",
         "camel-case": "latest",
-        "yeoman-generator": "^0.22.5"
+        "yeoman-generator": "^0.22.5",
+        "ejs":"latest"
     },
     "files": [
         "generators/app"

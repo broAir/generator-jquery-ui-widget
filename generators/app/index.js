@@ -1,5 +1,4 @@
 'use strict';
-var util = require('util');
 var path = require('path');
 var ejs = require('ejs');
 var htmlWiring = require('html-wiring');
